@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   <link rel="stylesheet" href="./css/layui.css">    
+</head>
+<body>
+    <div class="layui-upload">
+        <button type="button" class="layui-btn" id="test1">
+            上传图片
+        </button>
+        <div class="layui-upload-list" style=" width: 120px;height: 120px;border:1px orangered solid;">
+          <img class="layui-upload-img" id="demo1">
+          <p id="demoText"></p>
+        </div>
+      </div>    
+</body>
+ <script src="./layui.js"></script>
+ <script>
+    layui.use('upload', function(){
+      var upload = layui.upload;
+      var $ = layui.jquery;
+       
+      //执行实例
+      var uploadInst = upload.render({
+        elem: '#test1' //绑定元素
+        ,url: '/upload/' //上传接口
+        ,before:function(obj){
+          obj.preview(function(index, file, result){
+            $('#demo1').attr('src', result).css({
+              "width":"120px",
+              "height":"120px",
+              "border":"1px orangered solid"
+            }); //图片链接（base64）
+          });
+        }
+        ,done: function(res){
+            //如果上传失败
+            if(res.code > 0){
+              return layer.msg('上传失败');
+            }
+            layui.msg('成功')
+        }
+        ,error: function(){
+           //演示失败状态，并实现重传
+          var demoText = $('#demoText');
+          demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+          demoText.find('.demo-reload').on('click', function(){
+            uploadInst.upload();
+          });
+        }
+      });
+    });
+  </script>
+</html>
