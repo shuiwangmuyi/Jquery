@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/login.css">
+	<style type="text/css">
+		#box2{
+			border: 1px solid #cecece;
+			width:320px;
+			height: 500px;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">	
+	</div>
+	<div id="box2">
+	  fasjfajfkajfkajfaksjfaksfjaskf就发誓到家发咖啡机啊就是贷款就发是开机分机安抚好积分卡四大皆空就发卡刷k
+	</div>
+	
+
+
+  <form class="form-signin" role="form" action="/user/adduser" method="post">
+	<div class="form-group has-success has-feedback">
+            <input type="text" class="form-control" id="user_name" name="user_name" onblur="fun()" placeholder="请输入登录账号" autofocus>
+            <span id="spans"></span>
+        </div>
+    <button class="btn btn-lg btn-success btn-block" type="submit" id="zc" >注册</button>
+</form>
+
+<script src="../../Js/jquery-3.4.1.min.js"></script>
+ <script src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script> 
+<script>	
+	var result; 
+	function fun(){
+        var user_name=$("#user_name").val();
+        var oSpan=document.getElementById("spans");
+        var reg = /^[a-zA-Z]{1}([a-zA-Z0-9]|[_]){6,18}$/;             
+        $.post("queryUserByName",{user_name:user_name},function(aa){
+            if (aa==1&&reg.test(user_name)){
+                oSpan.innerHTML="恭喜您，此用户名可以使用";
+                oSpan.style.color="green";
+                alert(true);                
+                result=true;
+            }else  {
+                oSpan.innerHTML="此用户名被注册或格式不正确，请已字母开头6~18位！";
+                oSpan.style.color="red"; 
+                alert(false);              
+                result=false;
+            }
+        },"text");
+        return result;
+    }  
+
+	 $(function () {
+           $("#zc").click(function () {
+               var i=fun();
+               alert(i);
+               return false;
+           });
+        });
+
+
+	$(function(){		
+		$('#box').html("你好  JQuery").css('background-color','red').height(80).width(120).css('border','1px solid #ccc').append("<div>jfjaksj</div>");	
+
+         $('<p>').html("测试添加新的元素").appendTo("#box")
+		var box=document.querySelector("#box2");
+		var $box=$('#box2');
+		box2.style.backgroundColor="#ccc";
+		$box.css("background-color","yellow");	
+	})
+
+</script>
+</body>
+</html>

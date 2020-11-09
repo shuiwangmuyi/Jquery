@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <style>
+        *{
+        margin: 0;
+        padding: 0;
+    }
+    .col-sm-1,.col-sm-2{
+        display: contents;
+    }
+    </style>
+</head>
+<body>    
+    <form class="form-inline m-t" id="storeUpdate">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">本月含税预算：</label>
+            <div class="col-sm-1">
+                <input id="totalTaxed" name="updateTime" class="form-control">
+            </div>
+            <label class="col-sm-1 control-label">已用含税预算：</label>
+            <div class="col-sm-1">
+                <input id="usedTaxed" name="updateBy" class="form-control">
+            </div>
+            <label class="col-sm-1 control-label">剩余含税预算：</label>
+            <div class="col-sm-1">
+                <input id="otherTaxed" name="updateBy" class="form-control">
+            </div>
+            <label class="col-sm-1 control-label" style="color: #ff0000;">税率：</label>
+            <div class="col-sm-1">
+                <input id="tax" name="updateBy" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label" style="margin-left: 24.5%">本月预算：</label>
+            <div class="col-sm-1">
+                <input id="total" name="updateTime" class="form-control" oninput="operation()">
+            </div>
+            <label class="col-sm-1 control-label">已用预算：</label>
+            <div class="col-sm-1">
+                <input id="used" name="updateBy" class="form-control">
+            </div>
+            <label class="col-sm-1 control-label">剩余预算：</label>
+            <div class="col-sm-1">
+                <input id="other" name="updateBy" class="form-control">
+            </div>
+        </div>
+    </form>
+    <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>

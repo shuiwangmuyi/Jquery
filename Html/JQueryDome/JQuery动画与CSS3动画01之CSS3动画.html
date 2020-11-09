@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Juqer动画与CSS3动画01之CSS3动画</title>
+	<style type="text/css">
+		.detail-box{
+			margin: 100px auto;
+			width: 600px;
+		}
+		.detail-title{
+			padding: 20px;
+			background-color: #333;
+			color: #fff;
+			cursor: pointer;
+		}
+        .detail-content{
+        	overflow: hidden;
+        	padding: 0px 20px;        	
+        	height: 0;
+        	border:1px solid #ccc;
+            transition:  all 600ms;
+        }
+        .detail-content.open{       
+        	padding: 20px;
+        	height: auto;
+        }
+	</style>
+</head>
+<body>
+     <div class="detail-box">
+     	<div class="detail-title">详细信息</div>
+     	<div class="detail-content">
+     		直播课堂 支持屏幕分享/课件演示/音视频同步,多终端自由切换,APP/微信/PC端.培训机构无需自己开发,直播课堂平台 多形式教学体验:支持1对1,1对多,还原真实课堂
+     	</div>
+     </div>
+     <script type="text/javascript" src="../../Js/jquery-3.4.1.min.js"></script>
+     <script type="text/javascript">
+     	$(function(){
+     		$(".detail-title").click(function(){
+     			$(this).next(".detail-content").toggleClass('open');
+     		})
+     	})
+     </script>
+</body>
+</html>

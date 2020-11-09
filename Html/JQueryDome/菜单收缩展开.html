@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>筛选选择器</title>
+<!-- <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">   -->
+<link rel="stylesheet" type="text/css" href="../../css/style.css">
+	<style type="text/css">
+
+	</style>
+</head>
+<body>
+	<div class="nav-list">
+		<h3>选择器<span></span></h3>		
+		 <ul>
+		 	<li><a href="#">基本选择器</a></li>
+		 	<li><a href="#">层级选择器</a></li>
+		 	<li><a href="#">过滤选择器</a></li>	
+		 	<li><a href="#">属性选择器</a></li>
+		 	<li><a href="#">内容选择</a></li>
+		 	<li><a href="#">子元素选择器</a></li>
+		 	<li><a href="#">可见性选择器</a></li>
+		 	<li><a href="#">表单选择器</a></li>	
+		 	<li><a href="#">表单对象选择器</a></li>	
+		 </ul>
+		 <h3>筛选<span></span></h3>
+		  <ul>
+		  	<li><a href="#">过滤</a></li>
+		   <li><a href="#">查找</a></li>
+		   <li><a href="#">关联</a></li>
+		   <li><a href="#">DOM操作</a></li>
+		  </ul>
+
+		  <h3>样式<span></span></h3>
+		  <ul>
+		    <li><a href="#">CSS操作</a></li>
+		    <li><a href="#">位置</a></li>
+		    <li><a href="#">尺寸</a></li>
+		  </ul>
+	</div>
+	<script src="../../Js/jquery-3.4.1.min.js"></script>	
+<!-- 	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+	<script type="text/javascript">
+		$(function(){
+			$(".nav-list h3").click(function() {
+				 //  if($(this).hasClass("three")){
+				 //  	$(this).addClass("three");
+				 // }else{
+				 // 	$(this).addClass("three");
+				 // }
+				//$(this).toggleClass("three");//添加移除Class open				
+				// if($(this).next("ul").is(":visible")){
+				// 	$(this).next("ul").slideUp();//隐藏
+				// }else{
+				// 	$(this).next("ul").slideDown();//显示
+				// }
+			   //$(this).next("ul").slideToggle();//隐藏/显示
+			   $(this).toggleClass("three").next("ul").slideToggle();
+			});
+		})
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+<!-- 	 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">手机开发 -->
+	<title>JqueryUI</title>
+	<link rel="stylesheet" type="text/css" href="../../Js/jquery-ui-1.12.1/jquery-ui.min.css">
+	<style type="text/css">
+		button{
+			margin-bottom: 20px;
+		}
+		#drapBox{
+			width: 200px;
+			height: 200px;
+			background-color: #ccc;		
+			margin-bottom: 20px;			
+           
+		}
+        
+	</style>
+</head>
+<body>
+   <h1>Jquery UI</h1>
+   <br>
+   <hr>
+   <button>按钮</button>
+   <div id="drapBox"></div>
+
+  
+
+
+<script src="../../Js/jquery-3.4.1.min.js"></script>
+<script src="../../Js/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		// 调用拖动插件
+		$("#drapBox").draggable();
+		//调用按你插件
+		$("button").button();
+	})
+
+
+</script>
+</body>
+</html>

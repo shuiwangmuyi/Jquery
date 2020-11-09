@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<html>
+<script language=javascript>
+	//author:flysnowxg (http://www.zhihu.com/people/flysnowxg)
+	function print_data(str)
+	{    
+		eat_poison_display.innerHTML+=str;
+	}
+	//吃药的方案
+	function eat_poison_case(mouse_count)
+	{   
+	 var result=new Array();    
+	 if(mouse_count==1)	 
+	 {
+	  result[0]=new Array();        
+	  result[0][0]=1;    
+	}    
+	else    
+	{        
+		result=eat_poison_case(mouse_count-1);       
+		var _2_pow_n_1=Math.pow(2,mouse_count-1);        
+		for(var count_i=0;count_i<result.length;count_i++)        
+			{            
+				var loop_count=result[count_i].length;            
+				for(var count_j=0;count_j<loop_count;count_j++)            
+					{                
+						result[count_i][loop_count+count_j]=result[count_i][count_j]+_2_pow_n_1;   
+					}        
+				}        
+				result[mouse_count-1]=new Array();        
+				for(var count_i=0;count_i<_2_pow_n_1;count_i++)        
+					{            
+						result[mouse_count-1][count_i]=_2_pow_n_1+count_i;        
+					}    
+				}    
+				return result;
+			}
+	//bottle_count个瓶子需要的老鼠的数量
+	function need_mouse(bottle_count)
+	{    
+		if(bottle_count<=1) 
+			return Math.floor(bottle_count);    
+		for(var count_i=0;;count_i++)    
+			{        
+				if(Math.pow(2,count_i)<bottle_count && bottle_count<= Math.pow(2,count_i+1))        
+					{            
+						return count_i+1;        
+					}    
+				}
+			}
+	//老鼠喝药求解，第一个参数是瓶子个数，第二个参数是有毒的瓶子的编号
+	function cacul_eat_poison(bottle_count,poison_index){    
+		eat_poison_display.innerHTML="";    
+		bottle_count=Number(bottle_count);    
+		poison_index=Number(poison_index);    
+		if(isNaN(bottle_count) || isNaN(poison_index)) return print_data("请输入数字！");    
+		if(poison_index>=bottle_count) return print_data("请确保输入的有毒瓶子编号小于瓶子的个数！");   var eat_case=eat_poison_case(need_mouse(bottle_count));    
+		    var mouse_state=new Array();    
+		    var mouse_state_str="";    
+		    for(var count_i=0;count_i<eat_case.length;count_i++)    
+		    	{       
+		    	 mouse_state[count_i]=0;        
+		    	for(var count_j=0;count_j<eat_case[count_i].length;count_j++)        
+	    		{            
+		    		if(eat_case[count_i][count_j]==poison_index) mouse_state[count_i]=1;        
+		    	}    
+		    }    
+		    print_data("<b>"+bottle_count+"个瓶子"+poison_index+"号瓶子有毒的吃药方法如下：</b>");   print_data("<br>&nbsp&nbsp"+"需要"+need_mouse(bottle_count)+"只老鼠");    
+		    for(var count_i=0;count_i<eat_case.length;count_i++)   
+		    {        
+		    	if(mouse_state[count_i]==1) print_data("<br>&nbsp&nbsp第<span style=color:red>"+count_i+"</span>只老鼠，喝药方案：");        
+		    	else print_data("<br>&nbsp&nbsp第"+count_i+"只老鼠，喝药方案：");        
+		    	for(var count_j=0;count_j<eat_case[count_i].length;count_j++)        
+		    		{            
+		    			var tmp=eat_case[count_i][count_j];            
+		    			if(tmp<bottle_count)            {                
+		    				if(poison_index==tmp) 
+		    					print_data("<span style=color:red>"+tmp+"</span> ");
+		    					else 
+		    						print_data(""+tmp+" ");            
+		    				}        
+		    			}    
+		    		}    
+		    		print_data("<br><b>七天后结果(凡是喝了第<b>"+poison_index+"</b>瓶药的老鼠都要死掉):<br>");    
+		    		var table_data="";    
+		    		table_data+=("<table border=1>");    
+		    		table_data+=("<tr>");    
+		    		table_data+=("<td>老鼠编号</td>");    
+		    		for(var count_i=1;count_i<=mouse_state.length;count_i++)    
+		    		{        
+		    			if(mouse_state[mouse_state.length-count_i]==1) 
+		    				table_data+=("<td><span style=color:red>"+(mouse_state.length-count_i)+"</span>号</td>");        
+		    			else table_data+=("<td>"+(mouse_state.length-count_i)+"号</td>");    }    table_data+=("</tr>");    
+		    			table_data+=("<tr>");    
+		    			table_data+=("<td>死/活</td>");    
+		    			for(var count_i=1;count_i<=mouse_state.length;count_i++)    
+		    				{        
+		    					if(mouse_state[mouse_state.length-count_i]==1) 
+		    						table_data+=("<td>"+mouse_state[mouse_state.length-count_i]+"(死)</td>");        
+		    					else table_data+=("<td>"+mouse_state[mouse_state.length-count_i]+"(活)</td>");        
+		    				mouse_state_str+=mouse_state[mouse_state.length-count_i];    
+		    			}    
+		    			table_data+=("</tr>");    
+		    			table_data+=("</table>");    
+		    			print_data(table_data);    
+		    			print_data("<br>如上表格中第二行的1/0组合成二进制数字：<b>"+mouse_state_str+"，刚好等于十进制数字：<b>"+poison_index+"</b> <br>");}</script><form id="control_data">瓶子个数：<input type='text' name="bottle_count"/>有毒瓶子编号：<input type='text' name="poison_index"/><input type="button" value="求解" onclick='cacul_eat_poison(control_data.bottle_count.value,control_data.poison_index.value);' />(关于编号：如果有n个瓶子，那么瓶子编号就是0到n-1)<br></form>
+		    			<div id="eat_poison_display">		    				
+		    			</div>
+		    			</html>

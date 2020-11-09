@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>串联</title>
+	<style type="text/css">
+		ul{
+			border:2px dashed orange;
+			width: 600px;
+			list-style: none;
+			padding: 20px;			
+		}li{
+			margin-bottom: 30px;
+			padding: 20px;
+			border:2px dashed orange;
+		}p{
+			padding: 2px;
+			width: 400px;
+			border:1px solid red;
+		}
+	</style>
+</head>
+<body>
+  <h1>串联</h1>
+  <hr>
+  <ul class="myList">
+  	<li>中国</li>
+  	<li>美国</li>
+  	<li>日本</li>
+  	<li>英国</li>
+  	<li>俄罗斯</li>
+  	<li>法国</li>
+  	<li>德国</li>
+  	<li>苏联</li>
+  </ul>
+  <hr>
+  <p>fasfasdfasdfasdffffffffffffasdfasdfasdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsd</p>
+  <script src="../../Js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript">
+  	$(function(){
+  		//$(".myList").find("li").add("p").css("background-color","red")
+  		//$("body").find("ul").find("li").addBack().css("border","5px solid blue");
+  		//$(".myList").children("li").addBack().css("border","5px solid blue");
+  		$(".myList li").eq(2).end().css("border","5px solid blue");
+  	})
+  </script>
+</body>
+</html>

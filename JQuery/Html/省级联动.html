@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+
+	<title>
+		Josn数据测试之地址联动
+	</title>
+	<style type="text/css">
+		select{
+			width: 150px;
+		}
+	</style>
+	
+</head>
+<body>
+	<label>fasf</label>
+	<h1>请选择地址</h1>
+	<hr>
+	<select id="pro"></select>
+	<select id="city"></select>
+	<select id="area"></select>
+	<script src="../../JQuery/Js/jquery-3.4.1.min.js"></script>
+	<!-- <script src="./city.js"></script>  -->
+	<script src="../../JQuery/Js/location.js"></script>
+<!-- 	<script src="../../JQuery/json/city.json"></script> -->
+	<script type="text/javascript">	
+       $(function(){  
+           $("<option>").html("==省份==").appendTo("#pro");	
+           $("<option>").html("==城市==").appendTo("#city");	
+           $("<option>").html("==区县==").appendTo("#area");	       		
+       		//获取省级数据
+       		$.each(jtylocation,function(index,item){
+                if( jtylocation[index].level===1){                                   	
+                	$("<option>").html(jtylocation[index].name).val(jtylocation[index].sheng).addClass("_pro").appendTo("#pro"); //添加option元素 ，并将省级的数据放入到该元素中
+                }               
+       		})       	      		
+        var vals;//标记省级的ID
+        $("#pro").click(function() {
+        	vals=$(this).val();
+        });
+       	$("#pro,#city").click(function(){
+                 val=$(this).val();//标记市级ID
+                 var that=$(this);
+                 that.next("select").empty();                     
+                 $.each(jtylocation,function(index,item){
+                 	//判断是否是该省级中市级信息
+                	if(jtylocation[index].sheng===val&&jtylocation[index].level===2){
+                		$("<option>").html(jtylocation[index].name).val(jtylocation[index].di).appendTo("#city");//添加option元素 ，并将市级的数据放入到该元素中
+                	}
+                }) 
+       	    })
+         
+         	$("#city,#area").click(function(){         
+                var _val=$(this).val();               
+                var that=$(this);              
+                 $.each(jtylocation,function(index,item){
+                 	//判断是否是该市级中县级数据
+                	if(jtylocation[index].sheng===vals&&jtylocation[index].di===_val&&jtylocation[index].level===3){
+                		$("<option>").html(jtylocation[index].name).val(jtylocation[index].xian).appendTo("#area")//添加option元素 ，并将县级的数据放入到该元素中
+                	}
+                })   
+                
+       	})    
+
+
+       })
+
+	</script>
+</body>
+</html>

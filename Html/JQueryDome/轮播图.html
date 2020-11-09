@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>轮播图</title>
+	<style type="text/css">
+		body{
+		      margin: 0;
+		      padding: 0;
+		      font-size: 16px;
+		}
+		ul{
+			margin:0;
+			padding: 0;
+			list-style: none; 
+		}
+		.play-Box{
+			position: relative;
+			margin: 100 auto;
+			width: 520px;
+			height: 250px
+			border:1px solid #ccc;
+		}
+		.play-Box a{
+			/*display: none;*/
+			display: block;
+			overflow: hidden;
+			opacity: 0;
+			height:0;
+			transition: opacity .5s;
+		}
+	   .play-Box a.current{
+           /*display: block;*/
+           opacity: 1;
+           height:auto;
+	   }
+		.play-Box img{
+			width: 520px;
+			height: 250px;
+			border: 0;
+		}
+		#iconList{
+			position: absolute;;
+			left: 215px;
+			bottom: 30px;
+			margin-left: -45px; 
+		}
+		#iconList li{
+			float: left;
+			margin: 0 4px;
+			font-size: 0;
+			width: 10px;
+			height: 10px;
+			border-radius: 50%;
+			background-color: #c68c57;
+			cursor: pointer;
+		}
+		#iconList li.current{
+			background-color: red;
+		}
+		.slidebar{
+			display: none;
+            position: absolute;
+            top: 50%;
+            width: 30px;
+            height:50px;
+            color: #fff;
+            font-family:simsun;
+            text-align: center;
+            line-height: 50px;
+            background-color: #000;
+            opacity: .5;
+            filter: alpha(opacity=60);
+            cursor: pointer;
+		}
+		.sildebar-left{
+			left: 0;
+		}
+		.sildebar-right{
+			right: 0;
+		}
+	</style>
+</head>
+<body>
+    <div id="playBox" class="play-Box">
+    	<div id="imgList">
+    		<a href="#" class="current" target="_blank">
+    			<img src="../../Imgage/p.jpg" alt="">
+    		</a>
+    		<a href="#" target="_blank">
+    			<img src="../../Imgage/p1.jpg" alt="">
+    		</a>
+    		<a href="#" target="_blank">
+    			<img src="../../Imgage/p2.jpg" alt="">
+    		</a>
+    		<a href="#" target="_blank">
+    			<img src="../../Imgage/p3.jpg" alt="">
+    		</a>
+    		<a href="#" target="_blank">
+    			<img src="../../Imgage/p4.jpg" alt="">
+    		</a>
+    	</div>
+    	<div id="iconList">
+    		<ul>
+    			<li class="current">1</li>
+    			<li>2</li>
+    			<li>3</li>
+    			<li>4</li>
+    			<li>5</li>
+    		</ul>
+    	</div>
+
+    	<div class="slidebar sildebar-left"><</div>	
+    	<div class="slidebar sildebar-right">></div>
+    </div>
+
+
+    <script type="text/javascript" src="../../Js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript">
+    	$(function(){
+    		//设置变量
+    		var speed=1000;//时间
+    		var m=1;//循环变量
+
+    		//定时器
+    		var playTime=setInterval(runPlay,speed);
+
+    		//定时函数
+    		function runPlay(){
+                if(m>4){
+                	m=0;
+                }
+                controlPlay(m);
+                m++;
+    		}
+
+           //控制图片的变化
+    		function controlPlay(n){
+                $("#imgList a").removeClass("current").eq(n).addClass("current");
+                 $("#iconList li").removeClass("current").eq(n).addClass("current");
+    		}
+
+    		//给整个轮播图绑定鼠标时间
+    		$("#playBox").mouseenter(function(){
+    			//停止定时（鼠标移动上去停止）
+    			clearInterval(playTime);
+    			//左右控制按钮显示
+    			$(".slidebar").fadeIn(300);
+    		}).mouseleave(function() {
+    			//重新开启定时
+    			playTime=setInterval(runPlay,speed);
+    			//左右控制按钮隐藏
+    			$(".slidebar").fadeOut(300);
+    		});
+
+    		//给li绑定单击事件
+    		$("#iconList li").click(function(){
+    			controlPlay($(this).index());
+    			m=$(this).index()+1;
+    		}).hover(function() {
+    			return false;
+    		});
+    		$(".slidebar").hover(function(){
+    			return false;
+    		})
+
+    		//下一张图片
+    		$(".sildebar-right").click(function(){
+    			if(m>4) m=0;
+    			controlPlay(m);
+    			m++;
+    		})
+    		//上一张图片
+    		$(".sildebar-left").click(function(){
+    			m-=2;    			   			
+    			if(m<0){
+    				m=4;
+    			}
+    			controlPlay(m); 
+    			m++;
+    		})
+    	})
+    </script>
+</body>
+</html>

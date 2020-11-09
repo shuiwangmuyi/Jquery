@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Jquert-get请求</title>
+</head>
+<body>
+   <h2>发起Get请求</h2> 
+   <br/>
+   <hr>
+   <button id="btnGet">get</button>
+
+
+   <script type="text/javascript" src="../../Js/jquery-3.4.1.min.js"></script>
+   <script type="text/javascript">
+   	$(function(){
+       $("#btnGet").click(function() {
+       	$.get("http://localhost/get-cntent.php",function(data){
+       		alert("4454");
+       	})
+       })
+   	})
+
+   </script>
+</body>
+</html>

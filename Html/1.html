@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>解释</title>
+	<style type="text/css">
+		.all {
+			width: 860px;
+			margin: 0 auto;
+			text-align: center;
+		}
+
+		._top {
+			background-color: red;
+			width: 860px;
+			height: 120px;
+		}
+
+		._center {
+			background-color: #1db0a0;
+			width: 860px;
+			height: 120px;
+		}
+
+		._center ._cen_left,
+		._center ._cen_center,
+		._center ._cen_rigth {
+			width: 250px;
+			display: block;
+			box-shadow: 5px 2px 6px red;
+		}
+
+		._center ._cen_left p {
+			float: left;
+			display: inline-block;
+			width: 250px;
+			box-shadow: 5px 2px 6px red;
+		}
+
+		._center ._cen_center {
+			height: 100px;
+			margin-left: 270px;
+		}
+
+		._center ._cen_rigth {
+			height: 100px;
+			margin-top: -100px;
+			margin-right: 20px;
+			float: right;
+		}
+
+		._botton {
+			background-color: #ccc;
+			width: 860px;
+			height: 240px;
+		}
+
+		._top,
+		._center,
+		._botton {
+			margin-top: 60px;
+			box-shadow: 5px 2px 6px #000;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="all">
+		<!-- 整个页面的盒子   -->
+		<div class="_top">
+			<!-- 上 -->
+			<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
+		</div>
+		<div class="_center">
+			<!-- 上下的中 -->
+			<div class="_cen_left">
+				<!-- 模块2 的中 -->
+				<p>ncididunt ut labore et dolm</p>
+			</div>
+			<div class="_cen_center">
+				<!-- 中间 -->
+				nostrud exercitation
+			</div>
+			<div class="_cen_rigth">
+				<!-- 右 -->
+				fafsfffffff
+			</div>
+		</div>
+		<div class="_botton">
+			<!-- 下 -->
+			jfasdjfkasjdkfjjjj
+		</div>
+	</div>
+
+
+</body>
+
+</html>

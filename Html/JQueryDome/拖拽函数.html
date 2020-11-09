@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>	
+</head>
+<body>
+    <table>
+       <tr>
+           <td><input type="text" name="AdminAccount" value=""/></td>
+           <td><p id="errorage">faff</p></td>
+       </tr>
+       <tr>
+           <td><input type="password" name="AdminPaw" value="" /></td>
+           <td><p id="errormes"></p></td>
+       </tr>
+       <tr>
+           <td><input type="button" value="登录" id="btnLogin"/></td>
+           <td><input type="button" value="取消" id="btnESC" /></td>
+       </tr>
+   </table> 
+    <script type="text/javascript" src="../../Js/jquery-3.4.1.min.js"></script>
+    <script>
+    		$(function(){
+			$("#btnLogin").click(function() {				
+			   alert($("input[name='AdminAccount']").val());
+			});
+		})
+        
+    </script>
+</body>
+</html>

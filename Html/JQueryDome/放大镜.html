@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>放大镜</title>
+	<style type="text/css">
+		#samll-box{
+			position: relative;
+			width: 400px;
+			height: 400px;
+			border: 1px solid #ccc;
+		}
+		#big-box{
+			width: 400px;
+			height: 400px;
+			overflow: hidden;
+			position: absolute;
+			display: none;
+		}
+		#zoom{
+			display: none;
+			position: absolute;
+	        left: 0;top: 0;		
+			width: 100px;
+			height: 100px;
+			background-color: #F5f5f5;
+			opacity:0.8;
+			cursor: move;
+		}
+	</style>
+</head>
+<body>
+       <h1>放大镜</h1>
+       <div id="samll-box">
+       	   <img src="../../Imgage/TB2rxfywLiSBuNkSnhJXXbDcpXa_!!2343799809.jpg_400x400.jpg" alt="">
+            <div id="zoom"></div>
+       </div>
+       <div id="big-box">
+       	   <img src="../../Imgage/TB2rxfywLiSBuNkSnhJXXbDcpXa_!!2343799809.jpg" alt="">
+       </div>
+       <script src="../../Js/jquery-3.4.1.min.js"></script>
+       <script type="text/javascript">
+       	$(function(){
+       		$("#samll-box").mouseenter(function(event){
+       			// 计算小图位置
+       			var smallLeft=$("#samll-box").offset().left;
+       			var smallTop=$("#samll-box").offset().top;
+       			//显示大图  设置大图的位置
+       			$("#big-box").show().offset({
+       				left:smallLeft+400+10,
+       				top:smallTop
+       			});
+                // 显示放大镜元素
+                 $("#zoom").show();
+       			// 鼠标移动事件
+       			$(this).mousemove(function(ev){
+       				//鼠标在小图的位置
+                var mLeft=ev.pageX-smallLeft;
+                var mTop=ev.pageY-smallTop;
+                // console.log(mLeft,mTop);
+                 // 计算放大镜位置
+                 var zLeft=Math.min(Math.max(mLeft-50,0),300);//300  是因为 小图的宽 高是400，放大镜的宽、高是100，所以放大镜的位置最大是小图的宽、高 - 放大镜的宽高 = 300
+                 var zTop=Math.min(Math.max(mTop-50,0),300);//300  是因为 小图的宽 高是400，放大镜的宽、高是100，所以放大镜的位置最大是小图的宽、高 - 放大镜的宽高 = 300
+                 
+                 // 放大镜元素 并跟随移动
+                 
+                  $("#zoom").css("left",zLeft+"px").css("top",zTop+"px");
+
+                // 控制大图，显示部分内容
+                 $("#big-box").scrollLeft(zLeft*2).scrollTop(zTop*2);
+
+       			})                
+       		}).mouseleave(function() {
+       			$("#zoom").hide();//放大镜隐藏
+       			$("#big-box").hide();//大图隐藏
+       				
+       			});
+       		})       	
+       </script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>弹框插件</title>
+	<style type="text/css">
+		#btn1{
+			margin-left: 120px;
+		}
+		button{
+			padding: 15px 25px;
+			border-radius: 5px;
+			border: 1px solid #ccc;
+			margin-right: 12px;			
+		}
+	</style>
+</head>
+<body>
+
+	<button id="btn">Alert</button>
+	<button id="btn2">open</button>
+	<button id="btn3">confirm</button>
+	<button id="btn4">msg</button>
+	<button id="btn5">tips</button>
+	<button id="btn6">load</button>
+
+<script src="../../Js/jquery-3.4.1.min.js"></script>
+<script src="../../Js/layer-v3.1.1/layer/layer.js"></script>
+<script type="text/javascript">
+	$(function(){
+           $("#btn").click(function() {
+                layer.alert();
+           });
+
+           $("#btn2").click(function() {
+                layer.open({
+                      type: 0,  //默认为0  显示正常
+                      skin: 'layui-layer-demo', //样式类名
+                      closeBtn: 1, //不显示关闭按钮  默认为1（有关闭按钮）
+                      btn: ['按钮一', '按钮二', '按钮三'],
+                      yes: function(index, layero){//按钮一
+                             alert("ffffasfasff");
+                     },
+                     btn2: function(index, layero){
+                               //按钮【按钮二】的回调
+                          
+                           return false;// 开启该代码可禁止点击该按钮关闭
+                     },
+                     btn3: function(index, layero){
+                               //按钮【按钮三】的回调
+                           alert("btn3");
+                           return true;
+                     },
+                     cancel: function(){ 
+                         //右上角关闭回调
+                             alert("开启该代码可禁止点击该按钮关闭");  
+                         //return false 开启该代码可禁止点击该按钮关闭
+                     },
+
+                      // anim: 12,
+                      icon:2,//图标
+                      title:'提示',//标题
+                      shadeClose: false, //开启遮罩关闭   默认为false
+                      content: '内容',
+                      maxmin:true
+                  	});
+           });
+             $("#btn3").click(function() {
+                layer.confirm("confirm");
+           });
+              $("#btn4").click(function() {
+                layer.msg("提示");
+           });
+               $("#btn5").click(function() {
+                layer.tips("小贴士","#btn5");
+           });
+                $("#btn6").click(function() {
+                var loadEle=layer.load();
+                setTimeout(function(){
+                	layer.close(loadEle);
+                },2000)
+           });
+	})
+
+
+</script>
+</body>
+</html>

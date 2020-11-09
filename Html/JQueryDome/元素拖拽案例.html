@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>元素拖拽案例</title>
+	<style type="text/css">
+		#box{
+			position: absolute;
+			width: 100px;
+			height: 100px;
+			background-color: orange;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+     <div id="box"></div>
+     <script src="../../Js/jquery-3.4.1.min.js"></script>
+     <script type="text/javascript">     	
+     	$(function(){
+     		$("#box").mousedown(function(eve){
+     				$(this).css("opacity",".6");//透明度改变 
+                    //鼠标在元素上的位置
+     			    var offsetX=eve.pageX-$(this).offset().left;
+     				var offsetY=eve.pageY-$(this).offset().top;
+     				//移动事件
+     				$(this).mousemove(function(event) {
+     					//获取鼠标位置
+     					var x=event.pageX-offsetX;
+     					var y=event.pageY-offsetY;
+     					//改变鼠标位置
+     					$(this).offset({
+                             left:x,
+                             top:y
+                         })
+     				})
+     			}).mouseup(function(){
+     				$(this).css("opacity","1");
+     				//解除绑定事件
+     				$(this).off("mousemove");
+     			}) 	
+     	})
+     </script>
+</body>
+</html>

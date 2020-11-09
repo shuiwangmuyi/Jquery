@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>测试</title>
+</head>
+<body>
+  <div id="tset">
+  	<a href="http://www.baidu.com">百度</a>
+  </div>
+  <button id="btn">测试</button>
+</body>
+<script src="../../Js/jquery-3.4.1.js">
+
+</script><script src="../../Js/layer-v3.1.1/layer/layer.js"></script>
+<script>
+	$(function(){
+		$("#btn").click(function(){ 
+			$.ajax({
+				url:'../../Html/JQueryDome/弹框.html',
+				dataType:'html',
+				type:'get',
+				async:true,
+				success:function(data){
+					console.log(data);
+                   $("#tset").html(data)
+				},error:function(){
+
+				}
+			})
+		})
+	})
+</script>
+</html>
