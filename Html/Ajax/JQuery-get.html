@@ -13,13 +13,14 @@
 
    <script type="text/javascript" src="../../Js/jquery-3.4.1.min.js"></script>
    <script type="text/javascript">
-   	$(function(){
-       $("#btnGet").click(function() {
-       	$.get("http://localhost/get-cntent.php",function(data){
-       		alert("4454");
-       	})
-       })
-   	})
+   	 var province = '' ;
+        var city = '' ;
+        jQuery.getScript("http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js",
+        function(){
+            province = remote_ip_info["province"];
+            city = remote_ip_info["city"];
+            console.log(province+"========="+city)
+        }) ;
 
    </script>
 </body>
